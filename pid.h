@@ -16,6 +16,14 @@ public:
 
     double dt{0.0001}; // timestep
 
+    double output_max{1};
+    double output_min{-1};
+
+    bool antiWindup{false};
+
+    double getIntError() const;
+    double getError() const;
+
 protected:
 private:
     double _lastError{0};
