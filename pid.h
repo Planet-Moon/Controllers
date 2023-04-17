@@ -20,6 +20,7 @@ public:
     double output_min{-1};
 
     bool antiWindup{false};
+    double max_integral{1e5};
 
     double getIntError() const;
     double getError() const;

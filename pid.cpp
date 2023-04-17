@@ -19,11 +19,12 @@ double PID::run(){
     const double addIntError = e * dt;
     intError += addIntError;
     if(antiWindup){
-        if(intError > output_max){
-            intError = output_max;
+        const double abs_max_integral = abs(max_integral);
+        if(intError > abs_max_integral){
+            intError = abs_max_integral;
         }
-        else if(intError < output_min){
-            intError = output_min;
+        else if(intError < -1*abs_max_integral){
+            intError = -1*abs_max_integral;
         }
     }
     const double ri = ki * intError;
