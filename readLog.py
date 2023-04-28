@@ -2,6 +2,8 @@ from pathlib import Path
 import json
 import numpy as np
 import matplotlib.pyplot as plt
+from math import isnan
+
 
 def main():
     script_path = Path(__file__).parent
@@ -31,7 +33,14 @@ def main():
     ax3.plot(t_arr, u_arr, color="g")
     ax3.set_ylabel("Output", color="g")
 
-    ax[2].plot(t_arr, 20*np.log10(np.abs(e_arr)), label="Error dB")
+    e_arr_log = e_arr
+    for i, value in enumerate(e_arr):
+        if value and not isnan(value):
+            e_arr_log[i] = 20*np.log10(np.abs(value))
+        else:
+            e_arr_log[i] = -1000
+
+    ax[2].plot(t_arr, e_arr_log, label="Error dB")
     ax[2].legend()
 
     ax[3].plot(t_arr, fric_arr, label="Friction")
