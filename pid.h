@@ -22,6 +22,8 @@ public:
     bool antiWindup{false};
     double max_integral{1e5};
 
+    bool bounded_output{false};
+
     double getIntError() const;
     double getError() const;
 

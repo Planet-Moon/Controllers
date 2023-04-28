@@ -6,6 +6,7 @@
 #include <JsonInterface.h>
 
 void desired_x(){
+    std::cout << "desired_x" << std::endl;
     PID controller = PID();
 
     std::shared_ptr<double> x_desired = std::make_shared<double>(2.0);
@@ -99,7 +100,8 @@ void desired_x(){
 }
 
 void desired_v(){
-     PID controller = PID();
+    std::cout << "desired_v" << std::endl;
+    PID controller = PID();
 
     std::shared_ptr<double> v_desired = std::make_shared<double>(2.0);
     std::shared_ptr<double> v_current = std::make_shared<double>(1.8);
@@ -148,6 +150,7 @@ void desired_v(){
     controller.antiWindup = false;
     controller.output_max = 1;
     controller.output_min = -1;
+    controller.bounded_output = false;
 
     const int iterations = 10000;
     std::array<double, iterations> log_x{0};
@@ -195,5 +198,6 @@ int main(int argc, char const *argv[])
 {
     desired_x();
     // desired_v();
+    std::cout << "done." << std::endl;
     return 0;
 }

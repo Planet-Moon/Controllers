@@ -31,7 +31,7 @@ double PID::run(){
     const double e_dot = (e - _lastError)/dt;
     const double rd = kd * e_dot;
     double output = rp + ri + rd;
-    if(antiWindup){
+    if(bounded_output){
         if(output > output_max){
             output = output_max;
         }
